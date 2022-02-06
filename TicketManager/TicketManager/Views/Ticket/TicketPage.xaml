@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:picker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:behaviors1="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
+             x:Class="TicketManager.Views.Misc.TicketPage"
+             BackgroundImageSource="wallpaperstars.jpg"
+             Title="Ticket">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <picker:SfPicker x:Name="SfPicker" HeaderText="Kies onderwerp"></picker:SfPicker>
+                </StackLayout>
+                <textInputLayout:SfTextInputLayout Hint="Beschrijf het probleem"
+                                                   UnfocusedColor="Black"
+                                                   FocusedColor="Black" ContainerBackgroundColor="White">
+                    <Entry x:Name="descriptionEntry" TextColor="{AppThemeBinding Dark=White,Light=Black}">
+                        <Entry.Behaviors>
+                            <behaviors1:MaxLengthValidationBehaviour></behaviors1:MaxLengthValidationBehaviour>
+                        </Entry.Behaviors>
+                    </Entry>
+                </textInputLayout:SfTextInputLayout>
+                <buttons:SfButton Text="Submit Ticket" Clicked="SubmitTicket_Clicked"></buttons:SfButton>
+
+                <StackLayout>
+                    <ListView x:Name="userFeedbackLv" HasUnevenRows="True" ItemSelected="UserFeedbackLv_OnItemSelected" Margin="0,20,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="150">
+                                    <StackLayout BackgroundColor="#2196F3" Padding="5" Margin="0,20,0,0">
+                                        <Label Text="{Binding Problem}" FontAttributes="Bold" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                        <Label HeightRequest="150" Text="{Binding Description}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                        <Label Text="{Binding DateTime}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                    </StackLayout>
+                                </ViewCell>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TicketManager.Helpers;assembly=TicketManager"
+             xmlns:models="clr-namespace:TicketManager.Models;assembly=TicketManager"
+             xmlns:data="clr-namespace:TicketManager.Data;assembly=TicketManager"
+             Title="Chat"
+             x:Class="TicketManager.Views.Ticket.TicketChatPage" BackgroundImageSource="wallpaperstars.jpg">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="IncomingDataTemplate">
+                <StackLayout>
+                    <Label Text="{Binding Message}" 
+                           TextColor="White"
+                           Margin="20,20,100,0" 
+                           Padding="10" BackgroundColor="Gray"></Label>
+
+                    <StackLayout
+                        Margin="20,-10,100,0" 
+                        Padding="10" BackgroundColor="Gray">
+                        <FlexLayout
+                            VerticalOptions="End" HorizontalOptions="EndAndExpand">
+                            <Label FontSize="10"
+                                   Text="{Binding SenderEmail}" TextColor="Lightgray"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,0,0,0"></Label>
+                            <Label  FontSize="10"
+                                    Text="{Binding DateTime}" TextColor="Lightgray"
+                                    HorizontalTextAlignment="End"
+                                    Margin="40,0,0,0"></Label>
+
+                        </FlexLayout>
+                    </StackLayout>
+
+
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OutgoingDataTemplate">
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding Message}" 
+                               TextColor="White"
+                               Margin="100,20,20,0" 
+                               Padding="10" BackgroundColor="#2196F3"></Label>
+
+                        <StackLayout
+                               Margin="100,-10,20,0" 
+                               Padding="10" BackgroundColor="Gray">
+                            <FlexLayout
+                                        VerticalOptions="End" HorizontalOptions="EndAndExpand">
+                                <Label FontSize="10"
+                                    Text="{Binding SenderEmail}" TextColor="Lightgray"
+                                       HorizontalTextAlignment="End"
+                                    Margin="0,0,0,0"></Label>
+                                <Label  FontSize="10"
+                                        Text="{Binding DateTime}" TextColor="Lightgray"
+                                        HorizontalTextAlignment="End"
+                                        Margin="40,0,0,0"></Label>
+
+                            </FlexLayout>
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="InfoDataTemplate">
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding Message}" TextColor="White" 
+                               Margin="0,0,0,0" 
+                               Padding="10" BackgroundColor="Black"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+
+            <helpers:ChatTemplateSelector x:Key="templateSelector" IncomingDataTemplate="{StaticResource IncomingDataTemplate}"
+                                          OutgoingDataTemplate="{StaticResource OutgoingDataTemplate}"
+                                          InfoDataTemplate="{StaticResource InfoDataTemplate}"></helpers:ChatTemplateSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding ChatItems}" x:Name="ChatItemscollView" 
+                            ItemTemplate="{StaticResource templateSelector}"></CollectionView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="85"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Editor Placeholder="Message" Grid.Column="0" AutoSize="TextChanges" x:Name="messageEditor" BackgroundColor="{AppThemeBinding Light=White, Dark=Default}"></Editor>
+                <Button Text="Send" Grid.Column="1" Clicked="SendMessage_Clicked"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

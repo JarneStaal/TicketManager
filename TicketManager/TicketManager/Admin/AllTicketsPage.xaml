@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="http://schemas.syncfusion.com/xamarin"
+             x:Class="TicketManager.Admin.AllTicketsPage"
+             Title="Tickets" BackgroundImageSource="wallpaperstars.jpg" >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <xForms:SfPicker x:Name="sfPicker" HeaderText="Kies onderwerp" SelectionChanged="picker_OnSelectionChanged"></xForms:SfPicker>
+                <Label IsVisible="False" x:Name="nofb" TextColor="White">NO TICKETS</Label>
+                <ListView x:Name="ticketListView" HasUnevenRows="True" Margin="15,0,15,0" ItemSelected="ticketLv_OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="150">
+                                <StackLayout BackgroundColor="#0DA687" Padding="5" Margin="0,20,0,0">
+                                    <Label Text="{Binding Problem}" FontAttributes="Bold" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                    <Label HeightRequest="150" Text="{Binding Description}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                    <Label Text="{Binding DateTime}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                </StackLayout>
+                            </ViewCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+xmlns:behaviors="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
+xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+x:Class="TicketManager.Views.Account.LoginRegisterPage"
+BackgroundImageSource="wallpaperstars.jpg">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <StackLayout Margin="90,0,90,70" x:Name="logDiv" >
+                <Label HorizontalTextAlignment="Center" 
+                       TextColor="White" 
+                       FontSize="30"
+                       Margin="20"
+                       Text="TICKIFY"></Label>
+                <Entry x:Name="emailEntry" Placeholder="Email" TextColor="White" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=Default}">
+                    <Entry.Behaviors>
+                        <behaviors:EmailValidationBehaviour></behaviors:EmailValidationBehaviour>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry IsPassword="True" x:Name="passwordEntry" Placeholder="Password" Completed="Login_Click" TextColor="White" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=Default}">
+                    <Entry.Behaviors>
+                        <behaviors:PasswordValidationBehaviour />
+                    </Entry.Behaviors>
+                </Entry>
+                <button:SfButton Text="Login" Clicked="Login_Click"  />
+                <button:SfButton Text="Register" Clicked="Register_ClickAsync" />
+            </StackLayout>
+            <StackLayout x:Name="loadingDiv" IsVisible="False">
+                <xForms:SfBusyIndicator x:Name="busyindicator"
+                                        ViewBoxWidth="150" TextColor="#0DA687"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

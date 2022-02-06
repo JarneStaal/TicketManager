@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "88b6ac68-7b6b-43b6-bb8f-95c2f1eef768": {
+      "ProjectGuid": "88b6ac68-7b6b-43b6-bb8f-95c2f1eef768",
+      "DisplayName": "TicketManager",
+      "ColorIndex": 0
+    },
+    "a152459f-0ee9-4521-98ea-3b495d77cb3b": {
+      "ProjectGuid": "a152459f-0ee9-4521-98ea-3b495d77cb3b",
+      "DisplayName": "TicketManager.Android",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

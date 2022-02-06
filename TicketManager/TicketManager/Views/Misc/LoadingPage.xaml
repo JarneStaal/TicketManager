@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+Title="Tickify" Background="Black"
+x:Class="TicketManager.LoadingPage"
+NavigationPage.HasNavigationBar="False" BackgroundImageSource="logo_splash_v3.png">
+    <ContentPage.Content>
+        <StackLayout  HorizontalOptions="CenterAndExpand" 
+                      VerticalOptions="CenterAndExpand" Margin="0,200,0,0">
+            <!--<Label HorizontalTextAlignment="Center" 
+                   TextColor="White" FontSize="50" Text="TicketManager"></Label>-->
+            <progressBar:SfLinearProgressBar x:Name="pgBar"
+                                               SegmentCount="4"
+                                               ProgressColor="#1d4a97"
+                                               TrackColor="#5574A8"
+                                               WidthRequest="200"
+                                               MinimumWidthRequest="500"
+                                               Progress="{Binding ProgressValue}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

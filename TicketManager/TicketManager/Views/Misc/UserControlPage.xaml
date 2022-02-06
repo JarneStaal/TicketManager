@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:admin="clr-namespace:TicketManager.Admin;assembly=TicketManager"
+            xmlns:misc="clr-namespace:TicketManager.Views.Misc;assembly=TicketManager"
+            x:DataType="misc:UserControlPage"
+            x:Class="TicketManager.Views.Misc.UserControlPage"
+            FlyoutHeaderBehavior="CollapseOnScroll"
+            Title="UserControlPage">
+    <MenuItem x:Name="MyUserName" IconImageSource="account.png">
+    </MenuItem>
+    <FlyoutItem Title="Submit ticket" x:Name="feedbackControl" IsVisible="True" Icon="feedback.png">
+        <Tab Title="Ticket">
+            <ShellContent Title="Statistics" ContentTemplate="{DataTemplate misc:TicketPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsTabStop="True" Title="Admin" x:Name="statisticsControl" Icon="statistic"
+                IsVisible="False">
+        <Tab Title="Admin" Icon="statistic">
+            <ShellContent Title="Feedback" ContentTemplate="{DataTemplate admin:AllTicketsPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <MenuItem Clicked="Logout_OnClicked" Text="Logout" IconImageSource="logout.png"></MenuItem>
+</Shell>
+    
+    
+    
+    
