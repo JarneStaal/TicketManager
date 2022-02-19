@@ -21,8 +21,7 @@ namespace TicketManager.Views.Misc
         {
             if (await Authentication.IsAdmin())
             {
-                statisticsControl.IsVisible = true;
-                feedbackControl.IsVisible = false;
+                adminTickets.IsEnabled = true;
             }
         }
 
@@ -35,6 +34,8 @@ namespace TicketManager.Views.Misc
         private void Logout_OnClicked(object sender, EventArgs e)
         {
             Preferences.Remove("MyFirebaseRefreshToken");
+            Database.TicketCollection.Clear();
+            Database.CurrentUserTicketsCollection.Clear();
             Application.Current.MainPage = new LoginRegisterPage();
         }
     }

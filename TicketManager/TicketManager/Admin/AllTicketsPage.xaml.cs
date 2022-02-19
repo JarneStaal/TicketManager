@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Firebase.Database.Query;
 using TicketManager.Data;
 using TicketManager.Models;
 using TicketManager.Views.Ticket;
@@ -15,10 +19,6 @@ namespace TicketManager.Admin
         public AllTicketsPage()
         {
             InitializeComponent();
-            //TODO: FIX THIS
-            //((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.White;
-            //((NavigationPage)Application.Current.MainPage).BarTextColor = Color.OrangeRed;
-
             var collection = new List<string>();
             collection.Add("All");
             foreach (var item in Database.ProblemList)
@@ -26,13 +26,22 @@ namespace TicketManager.Admin
                 collection.Add(item);
             }
 
-            sfPicker.ItemsSource = collection;
-            if (Database.TicketCollection.Count != 0)
-                if (ticketListView.ItemsSource == null)
-                    ticketListView.ItemsSource = Database.TicketCollection;
-                else
-                    nofb.IsVisible = true;
+            //sfPicker.ItemsSource = collection;
 
+            CheckForNewTickets();
+        }
+
+        private async void CheckForNewTickets()
+        {
+            while (true)
+            {
+                await TicketAction.GatherAllTickets();
+                if (Database.TicketCollection.Any())
+                {
+                    ticketListView.ItemsSource = new ObservableCollection<Ticket>(Database.TicketCollection);
+                }
+                await Task.Delay(2000);
+            }
         }
 
         private async void ShowAllTickets_Clicked(object sender, EventArgs e)
@@ -52,17 +61,27 @@ namespace TicketManager.Admin
             ticketListView.SelectedItem = null;
         }
 
-        private async void picker_OnSelectionChanged(object sender, Syncfusion.SfPicker.XForms.SelectionChangedEventArgs e)
-        {
-            string selectedSubject = sfPicker.SelectedItem.ToString();
-            if (selectedSubject.Equals("All"))
-            {
-                await TicketAction.GatherAllTickets();
-                ticketListView.ItemsSource = Database.TicketCollection.OrderByDescending(x => x.Problem);
-                return;
-            }
-            await TicketAction.GatherAllTickets();
-            ticketListView.ItemsSource = Database.TicketCollection.Where(x => x.Problem == selectedSubject);
-        }
+        //private async void picker_OnSelectionChanged(object sender, Syncfusion.SfPicker.XForms.SelectionChangedEventArgs e)
+        //{
+        //    string selectedSubject = sfPicker.SelectedItem.ToString();
+        //    await TicketAction.GatherAllTickets();
+        //    if (selectedSubject.Equals("All"))
+        //    {
+               
+        //        var result = Database.TicketCollection.OrderByDescending(x => x.Problem);
+        //        if (result.Any())
+        //        {
+        //            ticketListView.ItemsSource = new ObservableCollection<Ticket>(result);
+        //            return;
+        //        }
+        //    }
+        //    var result2 = Database.TicketCollection.Where(x => x.Problem == selectedSubject);
+        //    if (result2.Any())
+        //    {
+        //        ticketListView.ItemsSource = new ObservableCollection<Ticket>(result2);
+        //    }
+
+        //    ticketListView.ItemsSource = new ObservableCollection<Ticket>();
+        //}
     }
 }

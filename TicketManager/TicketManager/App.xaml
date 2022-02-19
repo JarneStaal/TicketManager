@@ -4,6 +4,24 @@
              x:Class="TicketManager.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="BaseStyle"
+                   ApplyToDerivedTypes="True"
+                   TargetType="Element">
+                <Setter Property="Shell.FlyoutBackgroundColor"
+                        Value="White" />
+                <Setter Property="Shell.BackgroundColor"
+                        Value="Black" />
+                <Setter Property="Shell.ForegroundColor"
+                        Value="White" />
+                <Setter Property="Shell.TitleColor"
+                        Value="White" />
+                <Setter Property="Shell.TabBarForegroundColor"
+                        Value="White" />
+                <Setter Property="Shell.DisabledColor"
+                        Value="White" />
+                <Setter Property="Shell.UnselectedColor"
+                        Value="White" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

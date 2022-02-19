@@ -81,6 +81,9 @@
                                           InfoDataTemplate="{StaticResource InfoDataTemplate}"></helpers:ChatTemplateSelector>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="END CHAT" Clicked="EndChat_OnClick"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <CollectionView ItemsSource="{Binding ChatItems}" x:Name="ChatItemscollView" 

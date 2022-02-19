@@ -53,5 +53,10 @@ namespace TicketManager.Views.Ticket
                 messageEditor.Text = string.Empty;
             }
         }
+
+        private async void EndChat_OnClick(object sender, EventArgs e)
+        {
+            await TicketAction.RemoveTicket(_ticket);
+        }
     }
 }

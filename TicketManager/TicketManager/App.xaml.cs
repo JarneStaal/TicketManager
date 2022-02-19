@@ -12,7 +12,7 @@ namespace TicketManager
         {
             InitializeComponent();
 
-            MainPage = new LoadingPage();
+            MainPage = new TicketPage();
         }
 
         protected override async void OnStart()

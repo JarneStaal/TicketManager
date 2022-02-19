@@ -1,7 +1,10 @@
 ﻿using Firebase.Database;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Firebase.Database.Query;
 using TicketManager.Data;
 using TicketManager.Views.Ticket;
 using Xamarin.Forms;
@@ -12,6 +15,8 @@ namespace TicketManager.Views.Misc
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TicketPage : ContentPage
     {
+        public ObservableCollection<Models.Ticket> Tickets { get; set; } =
+            new ObservableCollection<Models.Ticket>();
         public TicketPage()
         {
             InitializeComponent();
@@ -21,10 +26,21 @@ namespace TicketManager.Views.Misc
                 TicketAction.GatherAllTickets();
             }
 
-            SfPicker.ItemsSource = new List<string> { "TV", "CHROMECAST", "GSM", "PC/LAPTOP", "LADER", "WIFI", "ETHERNET", "PRINTER", "OVEN" };
-            if (userFeedbackLv.ItemsSource == null)
+            SfPicker.ItemsSource = new List<string> { "TV", "CHROMECAST", "GSM", "PC/LAPTOP", "LADER", "WIFI", "INTERNET", "PRINTER", "OVEN" };
+            CheckForNewTickets();
+        }
+
+        private async void CheckForNewTickets()
+        {
+            while (true)
             {
-                userFeedbackLv.ItemsSource = Database.CurrentUserTicketsCollection;
+                Database.CurrentUserTicketsCollection = new ObservableCollection<Models.Ticket>
+                    (Database.CurrentUserTicketsCollection.Where(x => x.Problem == string.Empty));
+                Database.TicketCollection = new ObservableCollection<Models.Ticket>
+                    (Database.TicketCollection.Where(x => x.Problem == string.Empty));
+                await TicketAction.GatherAllTickets();
+                await Database.RetrieveCurrentUserTickets();
+                userFeedbackLv.ItemsSource = new ObservableCollection<Models.Ticket>(Database.CurrentUserTicketsCollection);
             }
         }
 
@@ -36,18 +52,18 @@ namespace TicketManager.Views.Misc
                 if (!string.IsNullOrEmpty(descriptionEntry.Text) && !string.IsNullOrEmpty(problem))
                 {
                     await Database.AddUserTicket(problem, descriptionEntry.Text);
-                    await DisplayAlert("Alert", "Ticket submitted succesfully!", "OK");
+                    await DisplayAlert("Alert", "Ticket succesvol aangemaakt!", "OK");
                     descriptionEntry.Text = string.Empty;
                     userFeedbackLv.ItemsSource = Database.CurrentUserTicketsCollection;
                 }
                 else
                 {
-                    await DisplayAlert("Alert", "Make sure reason is picked and short message is not empty.", "OK");
+                    await DisplayAlert("Alert", "Beschrijf het probleem.", "OK");
                 }
             }
             catch (FirebaseException)
             {
-                await DisplayAlert("Alert", "Ticket failed to submit.", "OK");
+                await DisplayAlert("Alert", "Ticket kan niet worden aangemaakt.", "OK");
             }
         }
 

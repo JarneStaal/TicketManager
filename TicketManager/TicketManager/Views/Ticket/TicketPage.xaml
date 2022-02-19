@@ -7,6 +7,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors1="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
              x:Class="TicketManager.Views.Misc.TicketPage"
              BackgroundImageSource="wallpaperstars.jpg"
+NavigationPage.HasNavigationBar="false"
              Title="Ticket">
     <ContentPage.Content>
         <ScrollView>
@@ -17,20 +18,19 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 <textInputLayout:SfTextInputLayout Hint="Beschrijf het probleem"
                                                    UnfocusedColor="Black"
                                                    FocusedColor="Black" ContainerBackgroundColor="White">
-                    <Entry x:Name="descriptionEntry" TextColor="{AppThemeBinding Dark=White,Light=Black}">
+                    <Entry x:Name="descriptionEntry" TextColor="Black">
                         <Entry.Behaviors>
                             <behaviors1:MaxLengthValidationBehaviour></behaviors1:MaxLengthValidationBehaviour>
                         </Entry.Behaviors>
                     </Entry>
                 </textInputLayout:SfTextInputLayout>
-                <buttons:SfButton Text="Submit Ticket" Clicked="SubmitTicket_Clicked"></buttons:SfButton>
-
+                <buttons:SfButton Margin="0,-25,0,0" Text="Maak ticket aan" Clicked="SubmitTicket_Clicked"></buttons:SfButton>
                 <StackLayout>
                     <ListView x:Name="userFeedbackLv" HasUnevenRows="True" ItemSelected="UserFeedbackLv_OnItemSelected" Margin="0,20,0,0">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell Height="150">
-                                    <StackLayout BackgroundColor="#2196F3" Padding="5" Margin="0,20,0,0">
+                                    <StackLayout BackgroundColor="#0DA687" Padding="5" Margin="0,20,0,0">
                                         <Label Text="{Binding Problem}" FontAttributes="Bold" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
                                         <Label HeightRequest="150" Text="{Binding Description}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
                                         <Label Text="{Binding DateTime}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>

@@ -41,11 +41,8 @@ namespace TicketManager.Data
 
         public static async Task RetrieveCurrentUserTickets()
         {
-            var user = await Authentication.GetUser();
-            var id = user.User.LocalId;
-
             CurrentUserTicketsCollection.Clear();
-            var results = TicketCollection.Where(x => x.SenderUID == id);
+            var results = TicketCollection.Where(x => x.SenderUID == TicketChat.FBUserLocalId);
             foreach (var fb in results)
             {
                 CurrentUserTicketsCollection.Add(fb);

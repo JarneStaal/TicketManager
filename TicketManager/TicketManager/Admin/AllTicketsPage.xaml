@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xForms="http://schemas.syncfusion.com/xamarin"
              x:Class="TicketManager.Admin.AllTicketsPage"
-             Title="Tickets" BackgroundImageSource="wallpaperstars.jpg" >
+             NavigationPage.HasNavigationBar="false"
+             Title="Tickets" BackgroundImageSource="wallpaperstars.jpg">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <xForms:SfPicker x:Name="sfPicker" HeaderText="Kies onderwerp" SelectionChanged="picker_OnSelectionChanged"></xForms:SfPicker>
+                <!--<xForms:SfPicker x:Name="sfPicker" HeaderText="Kies onderwerp" SelectionChanged="picker_OnSelectionChanged"></xForms:SfPicker>-->
                 <Label IsVisible="False" x:Name="nofb" TextColor="White">NO TICKETS</Label>
                 <ListView x:Name="ticketListView" HasUnevenRows="True" Margin="15,0,15,0" ItemSelected="ticketLv_OnItemSelected">
                     <ListView.ItemTemplate>
@@ -19,7 +20,6 @@
                                     <Label Text="{Binding DateTime}" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
                                 </StackLayout>
                             </ViewCell>
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
