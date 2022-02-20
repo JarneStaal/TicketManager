@@ -9,6 +9,9 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundImageSource="wallpaperstars.jpg"
 NavigationPage.HasNavigationBar="false"
              Title="Ticket">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="self help" Clicked="SelfHelp_OnClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>

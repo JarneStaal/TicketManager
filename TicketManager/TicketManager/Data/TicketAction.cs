@@ -45,15 +45,16 @@ namespace TicketManager.Data
                 }
                 Database.TicketCollection = rsCollection;
             }
+            else
+            {
+                Database.TicketCollection = new ObservableCollection<Ticket>();
+            }
         }
 
         public static async Task RemoveTicket(Ticket ticket)
         {
             await GatherAllTickets();
-            Database.TicketCollection = new ObservableCollection<Ticket>(Database.TicketCollection.Where(x => x.TicketId != ticket.TicketId));
-            var user = await Authentication.GetUser();
-            var id = user.User.LocalId;
-
+            Database.TicketCollection = new ObservableCollection<Ticket>(Database.TicketCollection.Where(x => x.Description != ticket.Description));
             await firebaseClient.Child("Ticket").Child("UserTicket").DeleteAsync();
             await firebaseClient.Child("TicketMessages").Child(TicketChat.FBUserLocalId).Child(ticket.TicketId).DeleteAsync();
             await GatherAllTickets();

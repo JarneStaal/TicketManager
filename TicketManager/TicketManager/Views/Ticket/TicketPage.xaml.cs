@@ -19,6 +19,7 @@ namespace TicketManager.Views.Misc
             new ObservableCollection<Models.Ticket>();
         public TicketPage()
         {
+            Database.RegisterSyncfusionLicense();
             InitializeComponent();
 
             if (Database.CurrentUserTicketsCollection.Count == 0)
@@ -38,9 +39,9 @@ namespace TicketManager.Views.Misc
                     (Database.CurrentUserTicketsCollection.Where(x => x.Problem == string.Empty));
                 Database.TicketCollection = new ObservableCollection<Models.Ticket>
                     (Database.TicketCollection.Where(x => x.Problem == string.Empty));
-                await TicketAction.GatherAllTickets();
                 await Database.RetrieveCurrentUserTickets();
                 userFeedbackLv.ItemsSource = new ObservableCollection<Models.Ticket>(Database.CurrentUserTicketsCollection);
+                await Task.Delay(5000);
             }
         }
 
@@ -76,6 +77,11 @@ namespace TicketManager.Views.Misc
                 this.Navigation.PushAsync(new TicketChatPage(result));
             }
             userFeedbackLv.SelectedItem = null;
+        }
+
+        private void SelfHelp_OnClicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new SelfHelpPage();
         }
     }
 }
