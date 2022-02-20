@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketManager.Data;
+using TicketManager.Views.Misc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +18,7 @@ namespace TicketManager.Views.Ticket
             new ObservableCollection<TicketChat>();
         public TicketChatPage(Models.Ticket ticket)
         {
+            Database.RegisterSyncfusionLicense();
             InitializeComponent();
             _ticket = ticket;
 
@@ -34,6 +36,22 @@ namespace TicketManager.Views.Ticket
                         await ScrollToBottom();
                     }
                 });
+            CheckIfTicketClosed();
+        }
+
+        private async void CheckIfTicketClosed()
+        {
+            while (true)
+            {
+                await TicketAction.GatherAllTickets();
+                if (Database.TicketCollection.FirstOrDefault(x => x.Description == _ticket.Description) == null)
+                {
+                    await DisplayAlert("Alert", "Ticket is gesloten", "OK");
+                    Application.Current.MainPage = new UserControlPage();
+                    break;
+                }
+                await Task.Delay(2000);
+            }
         }
 
         private async Task ScrollToBottom()

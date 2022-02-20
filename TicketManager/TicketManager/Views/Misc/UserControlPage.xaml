@@ -7,29 +7,21 @@
             x:Class="TicketManager.Views.Misc.UserControlPage"
             FlyoutHeaderBehavior="CollapseOnScroll"
             Title="UserControlPage" Style="{StaticResource BaseStyle}">
-    <MenuItem x:Name="MyUserName" IconImageSource="account.png">
+    <MenuItem x:Name="MyUserName" IconImageSource="profile.png">
     </MenuItem>
-    <MenuItem Clicked="Logout_OnClicked" Text="Logout" IconImageSource="logout.png"></MenuItem>
 
-    <FlyoutItem>
-        <Tab Title="Ticket">
-            <ShellContent Title="Statistics" ContentTemplate="{DataTemplate misc:TicketPage}"></ShellContent>
+    <FlyoutItem Title="Ticket" Icon="tickets.png">
+        <Tab Title="Ticket"  Icon="tickets.png">
+            <ShellContent Title="Favorite Movies" ContentTemplate="{DataTemplate misc:TicketPage}"></ShellContent>
         </Tab>
-        <Tab Title="Admin" IsEnabled="False" x:Name="adminTickets">
+    </FlyoutItem>
+
+    <FlyoutItem Title="Admin" Icon="admin.png" IsVisible="False" x:Name="AdminTickets">
+        <Tab Title="Admin" Icon="statistic.png">
             <ShellContent Title="Feedback" ContentTemplate="{DataTemplate admin:AllTicketsPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
-    <!--<TabBar>
-        <Tab Title="Ticket">
-            <ShellContent Title="Statistics" ContentTemplate="{DataTemplate misc:TicketPage}"></ShellContent>
-        </Tab>
-        <Tab Title="Admin" Icon="statistic">
-            <ShellContent Title="Feedback" ContentTemplate="{DataTemplate admin:AllTicketsPage}"></ShellContent>
-        </Tab>
-        <Tab Title="Logout" Icon="logout">
-
-        </Tab>
-    </TabBar>-->
+    <MenuItem Clicked="Logout_OnClicked" Text="Logout" IconImageSource="arrow.png"></MenuItem>
 </Shell>
     
     

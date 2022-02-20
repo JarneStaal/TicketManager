@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using System;
+using Firebase.Auth;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
@@ -18,8 +19,16 @@ namespace TicketManager.Data
         public static async Task<FirebaseAuth> GetUser()
         {
             var savedFirebaseAuth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
-            var refreshedContent = await authProvider.RefreshAuthAsync(savedFirebaseAuth);
-            Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(refreshedContent));
+            try
+            {
+                var refreshedContent = await authProvider.RefreshAuthAsync(savedFirebaseAuth);
+                Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(refreshedContent));
+            }
+            catch (Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Restart app with internet access", "OK");
+            }
+          
             return savedFirebaseAuth;
         }
 

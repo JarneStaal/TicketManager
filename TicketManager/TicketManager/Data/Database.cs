@@ -41,12 +41,15 @@ namespace TicketManager.Data
 
         public static async Task RetrieveCurrentUserTickets()
         {
-            CurrentUserTicketsCollection.Clear();
+            await TicketAction.GatherAllTickets();
+            var tempColl = new ObservableCollection<Ticket>();
             var results = TicketCollection.Where(x => x.SenderUID == TicketChat.FBUserLocalId);
             foreach (var fb in results)
             {
-                CurrentUserTicketsCollection.Add(fb);
+                tempColl.Add(fb);
             }
+
+            CurrentUserTicketsCollection = tempColl;
         }
 
         public static async Task AddUserTicket(string problem, string description)
@@ -54,12 +57,9 @@ namespace TicketManager.Data
             var user = await Authentication.GetUser();
             var id = user.User.LocalId;
 
-            int fbid;
 
-            if (TicketCollection.Count == 0)
-                fbid = 1;
-            else
-                fbid = TicketCollection.Max(x => int.Parse(x.TicketId)) + 1;
+            var random = new Random();
+            int fbid = random.Next(1, 999999999);
 
             Ticket ticket = new Ticket
             {
@@ -78,12 +78,9 @@ namespace TicketManager.Data
 
             });
             await RetrieveCurrentUserTickets();
-
-
             await TicketChat.SendMessage(ticket, $"Ticket Information\n--------------------------------------" +
-                                                   $"\nProblem: {problem}" +
-                                                   $"\nDescription: {description}");
-
+                                                 $"\nProblem: {problem}" +
+                                                 $"\nDescription: {description}");
         }
         public static void RegisterSyncfusionLicense()
         {

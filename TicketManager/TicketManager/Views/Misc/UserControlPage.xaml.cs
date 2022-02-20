@@ -12,6 +12,7 @@ namespace TicketManager.Views.Misc
     {
         public UserControlPage()
         {
+            Database.RegisterSyncfusionLicense();
             InitializeComponent();
             GetProfileInformationAndRefreshToken();
             CheckIfAdmin();
@@ -20,9 +21,7 @@ namespace TicketManager.Views.Misc
         private async void CheckIfAdmin()
         {
             if (await Authentication.IsAdmin())
-            {
-                adminTickets.IsEnabled = true;
-            }
+                AdminTickets.IsVisible = true;
         }
 
         private async void GetProfileInformationAndRefreshToken()

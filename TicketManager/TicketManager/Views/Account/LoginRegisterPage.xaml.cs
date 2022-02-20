@@ -13,6 +13,7 @@ namespace TicketManager.Views.Account
     {
         public LoginRegisterPage()
         {
+            Database.RegisterSyncfusionLicense();
             InitializeComponent();
         }
 

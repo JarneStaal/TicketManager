@@ -36,11 +36,8 @@ namespace TicketManager.Admin
             while (true)
             {
                 await TicketAction.GatherAllTickets();
-                if (Database.TicketCollection.Any())
-                {
-                    ticketListView.ItemsSource = new ObservableCollection<Ticket>(Database.TicketCollection);
-                }
-                await Task.Delay(2000);
+                ticketListView.ItemsSource = new ObservableCollection<Ticket>(Database.TicketCollection);
+                await Task.Delay(5000);
             }
         }
 
@@ -50,13 +47,14 @@ namespace TicketManager.Admin
             ticketListView.ItemsSource = Database.TicketCollection.OrderByDescending(x => x.Problem);
         }
 
-        private void ticketLv_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ticketLv_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
                 Ticket ticket = (Ticket)e.SelectedItem;
+                await TicketAction.GatherAllTickets();
                 var result = Database.TicketCollection.FirstOrDefault(x => x.TicketId == ticket.TicketId);
-                this.Navigation.PushAsync(new TicketChatPage(result));
+                await Navigation.PushAsync(new TicketChatPage(result));
             }
             ticketListView.SelectedItem = null;
         }

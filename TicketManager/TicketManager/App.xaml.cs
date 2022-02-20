@@ -17,6 +17,7 @@ namespace TicketManager
 
         protected override async void OnStart()
         {
+            Database.RegisterSyncfusionLicense();
             var token = Preferences.Get("MyFirebaseRefreshToken", "");
             if (!string.IsNullOrEmpty(token))
             {
