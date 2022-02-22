@@ -1,4 +1,5 @@
 ﻿using TicketManager.Data;
+using TicketManager.Models;
 using TicketManager.Views.Account;
 using TicketManager.Views.Misc;
 using Xamarin.Essentials;
@@ -12,11 +13,13 @@ namespace TicketManager
         {
             InitializeComponent();
 
-            MainPage = new TicketPage();
+            MainPage = new NavigationPage();
         }
 
         protected override async void OnStart()
         {
+            TicketPage tp = new TicketPage();
+            await Current.MainPage.Navigation.PushAsync(tp);
             Database.RegisterSyncfusionLicense();
             var token = Preferences.Get("MyFirebaseRefreshToken", "");
             if (!string.IsNullOrEmpty(token))
@@ -27,7 +30,7 @@ namespace TicketManager
                 TicketChat.FBUserLocalId = user.User.LocalId;
                 await TicketAction.GatherAllTickets();
                 await Database.RetrieveCurrentUserTickets();
-
+                await ProblemAction.GatherAllProblemsAndAnswers();
                 MainPage = new UserControlPage();
             }
             else

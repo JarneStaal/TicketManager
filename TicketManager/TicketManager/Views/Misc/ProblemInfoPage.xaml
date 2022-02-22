@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TicketManager.Models;assembly=TicketManager"
+             x:Class="TicketManager.Views.Misc.ProblemInfoPage"
+             x:DataType="models:Problem" Title="Problem Info">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Issue}"></Label>
+            <Label Text="{Binding Solution}"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -33,10 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Admin\AllTicketsPage.xaml">
+    <EmbeddedResource Update="Views\Admin\AllTicketsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Account\LoginRegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Admin\ProblemAddingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Misc\ProblemInfoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Misc\SelfHelpPage.xaml">

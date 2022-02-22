@@ -3,6 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:admin="clr-namespace:TicketManager.Admin;assembly=TicketManager"
             xmlns:misc="clr-namespace:TicketManager.Views.Misc;assembly=TicketManager"
+            xmlns:admin1="clr-namespace:TicketManager.Views.Admin;assembly=TicketManager"
             x:DataType="misc:UserControlPage"
             x:Class="TicketManager.Views.Misc.UserControlPage"
             FlyoutHeaderBehavior="CollapseOnScroll"
@@ -17,8 +18,11 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Admin" Icon="admin.png" IsVisible="False" x:Name="AdminTickets">
-        <Tab Title="Admin" Icon="statistic.png">
+        <Tab Title="All Tickets" Icon="statistic.png">
             <ShellContent Title="Feedback" ContentTemplate="{DataTemplate admin:AllTicketsPage}"></ShellContent>
+        </Tab>
+        <Tab Title="QA" Icon="statistic.png">
+            <ShellContent Title="Feedback" ContentTemplate="{DataTemplate admin1:ProblemAddingPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
     <MenuItem Clicked="Logout_OnClicked" Text="Logout" IconImageSource="arrow.png"></MenuItem>

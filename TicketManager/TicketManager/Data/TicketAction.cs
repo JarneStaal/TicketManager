@@ -54,6 +54,7 @@ namespace TicketManager.Data
         public static async Task RemoveTicket(Ticket ticket)
         {
             var tempCollection = new ObservableCollection<Ticket>(Database.TicketCollection.Where(x => x.TicketId != ticket.TicketId));
+
             await firebaseClient.Child("Ticket").Child("UserTicket").DeleteAsync();
             await firebaseClient.Child("TicketMessages").Child(TicketChat.FBUserLocalId).Child(ticket.TicketId).DeleteAsync();
             await firebaseClient.Child("Ticket").Child("UserTicket").PutAsync(new TicketRecord
@@ -63,7 +64,7 @@ namespace TicketManager.Data
             });
             Database.TicketCollection = tempCollection;     
             await Database.RetrieveCurrentUserTickets();
-            await Application.Current.MainPage.DisplayAlert("Alert", "Chat beëindigd", "OK");
+            //await Application.Current.MainPage.DisplayAlert("Alert", "Chat beëindigd", "OK");
             Application.Current.MainPage = new UserControlPage();
         }
     }

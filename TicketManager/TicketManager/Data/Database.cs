@@ -19,6 +19,7 @@ namespace TicketManager.Data
             new FirebaseClient("https://ticketmanager-16cfb-default-rtdb.europe-west1.firebasedatabase.app/");
         public static ObservableCollection<Ticket> CurrentUserTicketsCollection = new ObservableCollection<Ticket>();
         public static ObservableCollection<Ticket> TicketCollection = new ObservableCollection<Ticket>();
+        public static ObservableCollection<Problem> QACollection = new ObservableCollection<Problem>();
         public static List<string> ProblemList = new List<string>
             {"TV", "CHROMECAST", "GSM","PC/LAPTOP","LADER", "WIFI", "ETHERNET", "PRINTER", "OVEN"};
         public static async void DeleteUserData()

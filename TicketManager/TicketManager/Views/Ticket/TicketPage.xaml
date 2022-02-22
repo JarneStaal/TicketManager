@@ -10,7 +10,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 NavigationPage.HasNavigationBar="false"
              Title="Ticket">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="self help" Clicked="SelfHelp_OnClicked"></ToolbarItem>
+        <ToolbarItem Text="Self Help" Clicked="SelfHelp_OnClicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

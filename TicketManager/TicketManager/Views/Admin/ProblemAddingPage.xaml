@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:behaviors="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
+             x:Class="TicketManager.Views.Admin.ProblemAddingPage"
+             Title="QA">
+    <ContentPage.Content>
+        <StackLayout>
+            <textInputLayout:SfTextInputLayout Hint="Beschrijf het probleem"
+                                               UnfocusedColor="Black"
+                                               FocusedColor="Black" ContainerBackgroundColor="White">
+                <Entry x:Name="problemEntry" TextColor="Black">
+                </Entry>
+            </textInputLayout:SfTextInputLayout>
+            <textInputLayout:SfTextInputLayout Hint="Beschrijf de oplossing"
+                                               UnfocusedColor="Black"
+                                               FocusedColor="Black" ContainerBackgroundColor="White">
+                <Editor x:Name="solutionEntry" TextColor="Black" AutoSize="TextChanges">
+                </Editor>
+            </textInputLayout:SfTextInputLayout>
+            <Button Text="Add" BackgroundColor="Black" TextColor="White" Clicked="AddQA_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TicketManager.Views.Misc.SelfHelpPage">
+             xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:behaviors="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
+             xmlns:converters="clr-namespace:TicketManager.Converters;assembly=TicketManager"
+             x:Class="TicketManager.Views.Misc.SelfHelpPage" Title="Self Help">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:PartialText x:Key="partialTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Go Back" Clicked="GoBackToHome_Clicked"></Button>
+            <textInputLayout:SfTextInputLayout Hint="Zoek"
+                                               UnfocusedColor="Black"
+                                               FocusedColor="Black" ContainerBackgroundColor="White">
+                <Entry x:Name="descriptionEntry" TextColor="Black">
+                    <Entry.Behaviors>
+                        <behaviors:MaxLengthValidationBehaviour></behaviors:MaxLengthValidationBehaviour>
+                    </Entry.Behaviors>
+                </Entry>
+            </textInputLayout:SfTextInputLayout>
+            <ListView x:Name="searchResultsLv" HasUnevenRows="True" ItemSelected="searchResultsLv_OnItemSelected" Margin="0,20,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="150">
+                            <StackLayout BackgroundColor="#0DA687" Padding="5" Margin="0,0,0,0">
+                                <Label Text="{Binding Issue}" FontAttributes="Bold" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                                <Label Text="{Binding Solution, Converter={StaticResource partialTextConverter}}" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

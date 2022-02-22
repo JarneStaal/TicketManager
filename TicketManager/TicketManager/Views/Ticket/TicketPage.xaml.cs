@@ -81,7 +81,7 @@ namespace TicketManager.Views.Misc
 
         private void SelfHelp_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new SelfHelpPage();
+            this.Navigation.PushAsync(new SelfHelpPage());
         }
     }
 }

@@ -4,7 +4,7 @@
              xmlns:xForms="http://schemas.syncfusion.com/xamarin"
              x:Class="TicketManager.Admin.AllTicketsPage"
              NavigationPage.HasNavigationBar="false"
-             Title="Tickets" BackgroundImageSource="wallpaperstars.jpg">
+             Title="All Tickets" BackgroundImageSource="wallpaperstars.jpg">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
