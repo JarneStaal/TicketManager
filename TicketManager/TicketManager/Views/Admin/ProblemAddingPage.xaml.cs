@@ -20,6 +20,9 @@ namespace TicketManager.Views.Admin
         private async void AddQA_Clicked(object sender, EventArgs e)
         {
             await ProblemAction.AddProblem(problemEntry.Text, solutionEntry.Text);
+            await Application.Current.MainPage.DisplayAlert("Alert", "Succesvol toegevoegd", "OK");
+            problemEntry.Text = string.Empty;
+            solutionEntry.Text = string.Empty;
         }
     }
 }

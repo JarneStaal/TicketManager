@@ -11,13 +11,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-
         <StackLayout>
-            <Button Text="Go Back" Clicked="GoBackToHome_Clicked"></Button>
             <textInputLayout:SfTextInputLayout Hint="Zoek"
                                                UnfocusedColor="Black"
                                                FocusedColor="Black" ContainerBackgroundColor="White">
-                <Entry x:Name="descriptionEntry" TextColor="Black">
+                <Entry x:Name="descriptionEntry" TextColor="Black" TextChanged="DescriptionEntry_OnTextChanged">
                     <Entry.Behaviors>
                         <behaviors:MaxLengthValidationBehaviour></behaviors:MaxLengthValidationBehaviour>
                     </Entry.Behaviors>
