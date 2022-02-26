@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +23,6 @@ namespace TicketManager.Views.Misc
                 searchResultsLv.ItemsSource = Database.QACollection;
             }
         }
-
-        private void GoBackToHome_Clicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage = new UserControlPage();
-        }
-
         private void searchResultsLv_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
@@ -36,6 +32,43 @@ namespace TicketManager.Views.Misc
                 this.Navigation.PushAsync(new ProblemInfoPage(result));
             }
             searchResultsLv.SelectedItem = null;
+        }
+
+        
+        private void DescriptionEntry_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var listOfResults = new ObservableCollection<Problem>();
+            searchResultsLv.ItemsSource = new ObservableCollection<Problem>();
+            if (!string.IsNullOrEmpty(e.NewTextValue))
+            {
+                var searchStringArray = e.NewTextValue.ToLower().Split(' ');
+
+                foreach (var problem in Database.QACollection)
+                {
+                    foreach (var searchStr in searchStringArray)
+                    {
+                        if (problem.Issue.ToLower().Contains(searchStr))
+                        {
+                            if (!listOfResults.Any(x => x.Issue == problem.Issue))
+                            {
+                                listOfResults.Add(problem);
+                            }
+                        }
+                    }
+                }
+
+                if (listOfResults.Any())
+                {
+                    searchResultsLv.ItemsSource = listOfResults;
+                    return;
+                }
+                else
+                {
+                    searchResultsLv.ItemsSource = new ObservableCollection<Problem>();
+                    return;
+                }
+            }
+            searchResultsLv.ItemsSource = new ObservableCollection<Problem>(Database.QACollection);
         }
     }
 }
