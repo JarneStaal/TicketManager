@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:TicketManager.Models;assembly=TicketManager"
              x:Class="TicketManager.Views.Misc.ProblemInfoPage"
-             x:DataType="models:Problem" Title="Problem Info">
+             x:DataType="models:Problem" Title="{Binding Issue}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Issue}"></Label>
-            <Label Text="{Binding Solution}"></Label>
+        <StackLayout Margin="20">
+            <Label TextColor="#0DA687" FontAttributes="Bold" TextDecorations="Underline"  FontSize="20" Text="{Binding Issue}"></Label>
+            <Label FontSize="15" Text="{Binding Solution}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
