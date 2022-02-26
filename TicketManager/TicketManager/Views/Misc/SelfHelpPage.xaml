@@ -4,16 +4,15 @@
              xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:behaviors="clr-namespace:TicketManager.Behaviors;assembly=TicketManager"
              xmlns:converters="clr-namespace:TicketManager.Converters;assembly=TicketManager"
-             x:Class="TicketManager.Views.Misc.SelfHelpPage" Title="Self Help">
+             x:Class="TicketManager.Views.Misc.SelfHelpPage" Title="SELF HELP">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:PartialText x:Key="partialTextConverter" />
+            <converters:PartialTextConverter x:Key="partialTextConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
 
         <StackLayout>
-            <Button Text="Go Back" Clicked="GoBackToHome_Clicked"></Button>
             <textInputLayout:SfTextInputLayout Hint="Zoek"
                                                UnfocusedColor="Black"
                                                FocusedColor="Black" ContainerBackgroundColor="White">
@@ -27,7 +26,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="150">
-                            <StackLayout BackgroundColor="#0DA687" Padding="5" Margin="0,0,0,0">
+                            <StackLayout Background="Black"   Padding="5" Margin="0,0,0,0">
                                 <Label Text="{Binding Issue}" FontAttributes="Bold" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
                                 <Label Text="{Binding Solution, Converter={StaticResource partialTextConverter}}" FontSize="15" TextColor="{AppThemeBinding Light=White, Dark=Default}"></Label>
                             </StackLayout>
