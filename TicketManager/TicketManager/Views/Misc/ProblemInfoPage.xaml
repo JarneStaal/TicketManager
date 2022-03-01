@@ -5,9 +5,11 @@
              x:Class="TicketManager.Views.Misc.ProblemInfoPage"
              x:DataType="models:Problem" Title="Problem Info">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Issue}"></Label>
-            <Label Text="{Binding Solution}"></Label>
+        <StackLayout Margin="20">
+            <Label FontSize="20" FontFamily="Bold" FontAttributes="Bold" Text="{Binding Issue}" TextColor="#0DA687"></Label>
+            <Label TextColor="Black" Margin="0,20,0,0" Text="{Binding Solution}"></Label>
+            <Button Text="Helpt dit niet?
+                    Maak een ticket aan."></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
