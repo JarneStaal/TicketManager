@@ -10,8 +10,8 @@
             <textInputLayout:SfTextInputLayout Hint="Beschrijf het probleem"
                                                UnfocusedColor="Black"
                                                FocusedColor="Black" ContainerBackgroundColor="White">
-                <Entry x:Name="problemEntry" TextColor="Black">
-                </Entry>
+                <Editor x:Name="problemEntry" TextColor="Black" AutoSize="TextChanges">
+                </Editor>
             </textInputLayout:SfTextInputLayout>
             <textInputLayout:SfTextInputLayout Hint="Beschrijf de oplossing"
                                                UnfocusedColor="Black"
@@ -19,7 +19,7 @@
                 <Editor x:Name="solutionEntry" TextColor="Black" AutoSize="TextChanges">
                 </Editor>
             </textInputLayout:SfTextInputLayout>
-            <Button Text="Add" BackgroundColor="Black" TextColor="White" Clicked="AddQA_Clicked"></Button>
+            <Button Text="Toevoegen" BackgroundColor="Black" TextColor="White" Clicked="AddQA_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

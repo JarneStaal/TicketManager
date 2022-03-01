@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace TicketManager.Converters
 {
-    public class PartialText : IValueConverter
+    public class PartialTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

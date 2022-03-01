@@ -62,11 +62,10 @@ namespace TicketManager.Views.Misc
                     searchResultsLv.ItemsSource = listOfResults;
                     return;
                 }
-                else
-                {
+               
                     searchResultsLv.ItemsSource = new ObservableCollection<Problem>();
                     return;
-                }
+                
             }
             searchResultsLv.ItemsSource = new ObservableCollection<Problem>(Database.QACollection);
         }
